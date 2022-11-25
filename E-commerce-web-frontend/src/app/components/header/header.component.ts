@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
 
   onLogoutClick() {
     this.userAuthService.clear();
-    this.router.navigate(['home']);
+    this.router.navigate(['/']);
   }
 
   hasRoles(roles: any[]): boolean {

@@ -53,15 +53,15 @@ public class UserService {
         adminUser.setRole(adminRoles);
         userDao.save(adminUser);
 
-//        User user = new User();
-//        user.setUserFirstName("Amy");
-//        user.setUserLastName("Adams");
-//        user.setUserName("amy123");
-//        user.setUserPassword(getEncodedPassword("amy@pass"));
-//        Set<Role> userRoles = new HashSet<>();
-//        userRoles.add(userRole);
-//        user.setRole(userRoles);
-//        userDao.save(user);
+        User user = new User();
+        user.setUserFirstName("Amy");
+        user.setUserLastName("Adams");
+        user.setUsername("amy123");
+        user.setUserPassword(getEncodedPassword("amy@pass"));
+        Set<Role> userRoles = new HashSet<>();
+        userRoles.add(userRole);
+        user.setRole(userRoles);
+        userDao.save(user);
     }
 
     public String getEncodedPassword(String password) {
