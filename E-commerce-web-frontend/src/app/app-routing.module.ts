@@ -6,6 +6,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { ShowProductDetailsComponent } from './components/show-product-details/show-product-details.component';
 import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
@@ -30,6 +31,12 @@ const routes: Routes = [
   {
     path: 'add-new-product',
     component: AddNewProductComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['Admin'] },
+  },
+  {
+    path: 'show-product-details',
+    component: ShowProductDetailsComponent,
     canActivate: [AuthGuard],
     data: { roles: ['Admin'] },
   },

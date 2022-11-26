@@ -16,4 +16,16 @@ export class ProductService {
       product
     );
   }
+
+  getAllProducts(): Observable<any> {
+    return this.httpClient.get<Product[]>(
+      `${environment.baseUrl}/getAllProducts`
+    );
+  }
+
+  deleteProduct(productId: number): Observable<any> {
+    return this.httpClient.delete(
+      `${environment.baseUrl}/deleteProduct/${productId}`
+    );
+  }
 }
