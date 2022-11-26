@@ -19,62 +19,14 @@
   </button>
 </mat-toolbar>
 
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Angular Starter</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/home"
-            >Home</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            *ngIf="hasRoles(['Admin'])"
-            class="nav-link active"
-            aria-current="page"
-            routerLink="/admin"
-            >Admin Dashboard</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            *ngIf="hasRoles(['User'])"
-            class="nav-link active"
-            aria-current="page"
-            routerLink="/user"
-            >User Dashboard</a
-          >
-        </li>
-      </ul>
-      <button
-        *ngIf="!isLoggedIn()"
-        class="btn btn-success"
-        type="button"
-        routerLink="/login"
-      >
-        Login
-      </button>
-      <button
-        *ngIf="isLoggedIn()"
-        class="btn btn-danger"
-        type="button"
-        (click)="onLogoutClick()"
-      >
-        Logout
-      </button>
-    </div>
-  </div>
-</nav> -->
+<mat-toolbar *ngIf="isLoggedIn()" color="primary">
+  <button mat-raised-button color="primary" routerLink="/">Home</button>
+  <button
+    *ngIf="hasRoles(['Admin'])"
+    mat-raised-button
+    color="primary"
+    routerLink="/add-new-product"
+  >
+    Add new product
+  </button>
+</mat-toolbar>

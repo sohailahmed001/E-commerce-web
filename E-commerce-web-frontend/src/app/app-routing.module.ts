@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { AddNewProductComponent } from './components/add-new-product/add-new-product.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { HomeComponent } from './components/home/home.component';
@@ -26,6 +27,12 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'forbidden', component: ForbiddenComponent },
+  {
+    path: 'add-new-product',
+    component: AddNewProductComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['Admin'] },
+  },
 ];
 
 @NgModule({

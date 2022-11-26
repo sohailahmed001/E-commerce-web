@@ -18,6 +18,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AddNewProductComponent } from './components/add-new-product/add-new-product.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { DragDirective } from './directives/drag.directive';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,8 @@ import { MatInputModule } from '@angular/material/input';
     HeaderComponent,
     ForbiddenComponent,
     HomeComponent,
+    AddNewProductComponent,
+    DragDirective,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +45,7 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatGridListModule,
   ],
   providers: [
     {
