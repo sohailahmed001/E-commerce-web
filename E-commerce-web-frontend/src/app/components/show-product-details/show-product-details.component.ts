@@ -15,14 +15,13 @@ import { Router } from '@angular/router';
 export class ShowProductDetailsComponent implements OnInit {
   productDetails: Product[] = [];
   displayedColumns: string[] = [
-    'Id',
-    'Product Name',
-    'Product Description',
-    'Product Discounted Price',
-    'Product Actual Price',
-    'Images',
-    'Edit Button',
-    'Delete Button',
+    'id',
+    'name',
+    'description',
+    'discounted-price',
+    'actual-price',
+    'images',
+    'actions',
   ];
 
   constructor(

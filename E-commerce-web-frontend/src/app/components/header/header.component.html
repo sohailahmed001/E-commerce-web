@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <span>E-Commerce Application</span>
+  <span routerLink="/" style="cursor: pointer">E-Commerce Application</span>
   <span class="space-buttons"></span>
   <button
     *ngIf="!isLoggedIn()"
@@ -20,20 +20,29 @@
 </mat-toolbar>
 
 <mat-toolbar *ngIf="isLoggedIn()" color="primary">
-  <button mat-raised-button color="primary" routerLink="/">Home</button>
+  <button
+    mat-raised-button
+    routerLink="/"
+    color="primary"
+    style="margin-right: 5px"
+  >
+    Home
+  </button>
   <button
     *ngIf="hasRoles(['Admin'])"
     mat-raised-button
-    color="primary"
     routerLink="/add-new-product"
+    color="primary"
+    style="margin-right: 5px"
   >
     Add new product
   </button>
   <button
     *ngIf="hasRoles(['Admin'])"
     mat-raised-button
-    color="primary"
     routerLink="/show-product-details"
+    color="primary"
+    style="margin-right: 5px"
   >
     Show product details
   </button>

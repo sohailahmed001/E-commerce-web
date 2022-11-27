@@ -3,6 +3,11 @@ mat-grid-tile {
   border-radius: 5px;
 }
 
+.image-container {
+  position: relative;
+  height: 250px;
+}
+
 .product-image {
   max-width: 90%;
   max-height: 90%;
