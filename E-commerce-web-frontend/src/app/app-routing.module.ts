@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ShowProductDetailsComponent } from './components/show-product-details/show-product-details.component';
 import { UserComponent } from './components/user/user.component';
+import { ProductResolveService } from './services/product-resolve.service';
 
 const routes: Routes = [
   {
@@ -33,6 +34,9 @@ const routes: Routes = [
     component: AddNewProductComponent,
     canActivate: [AuthGuard],
     data: { roles: ['Admin'] },
+    resolve: {
+      product: ProductResolveService,
+    },
   },
   {
     path: 'show-product-details',

@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/model/product.model';
 import { ProductService } from 'src/app/services/product.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ShowProductImagesDialogComponent } from '../show-product-images-dialog/show-product-images-dialog.component';
+import { ImageProcessingService } from 'src/app/services/image-processing.service';
+import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-show-product-details',
@@ -15,21 +20,48 @@ export class ShowProductDetailsComponent implements OnInit {
     'Product Description',
     'Product Discounted Price',
     'Product Actual Price',
+    'Images',
     'Edit Button',
     'Delete Button',
   ];
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private dialog: MatDialog,
+    private imageProcessingService: ImageProcessingService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getAllProducts();
   }
 
   getAllProducts() {
-    this.productService.getAllProducts().subscribe(
+    this.productService
+      .getAllProducts()
+      .pipe(
+        map((data: Product[], i) =>
+          data.map((product) =>
+            this.imageProcessingService.createImages(product)
+          )
+        )
+      )
+      .subscribe(
+        (response) => {
+          console.log(response);
+
+          this.productDetails = response;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+
+  deleteProduct(productId: number) {
+    this.productService.deleteProduct(productId).subscribe(
       (response) => {
-        console.log(response);
-        this.productDetails = response;
+        this.getAllProducts();
       },
       (error) => {
         console.log(error);
@@ -37,15 +69,17 @@ export class ShowProductDetailsComponent implements OnInit {
     );
   }
 
-  deleteProduct(productId: number) {
-    this.productService.deleteProduct(productId).subscribe(
-      (response) => {
-        console.log(response);
-        this.getAllProducts();
+  showImages(product: Product) {
+    this.dialog.open(ShowProductImagesDialogComponent, {
+      height: '500px',
+      width: '800px',
+      data: {
+        images: product.productImages,
       },
-      (error) => {
-        console.log(error);
-      }
-    );
+    });
+  }
+
+  editProductDetails(productId: number) {
+    this.router.navigate(['add-new-product', { productId: productId }]);
   }
 }

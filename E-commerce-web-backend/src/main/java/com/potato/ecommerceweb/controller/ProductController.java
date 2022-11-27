@@ -52,6 +52,13 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @PreAuthorize("hasRole('Admin')")
+    @GetMapping({"/getProductById/{productId}"})
+    public Product getProductById(@PathVariable("productId") Integer productId) {
+        return productService.getProductById(productId);
+    }
+
+    @PreAuthorize("hasRole('Admin')")
     @DeleteMapping({"/deleteProduct/{productId}"})
     public void deleteProduct(@PathVariable("productId") Integer productId) {
         productService.deleteProduct(productId);

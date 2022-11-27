@@ -28,4 +28,10 @@ export class ProductService {
       `${environment.baseUrl}/deleteProduct/${productId}`
     );
   }
+
+  getProductById(productId: number): Observable<any> {
+    return this.httpClient.get(
+      `${environment.baseUrl}/getProductById/${productId}`
+    );
+  }
 }

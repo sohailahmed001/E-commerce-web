@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { FileHandle } from 'src/app/model/file-handle.model';
 import { Product } from 'src/app/model/product.model';
 import { ProductService } from 'src/app/services/product.service';
@@ -10,15 +11,24 @@ import { ProductService } from 'src/app/services/product.service';
   templateUrl: './add-new-product.component.html',
   styleUrls: ['./add-new-product.component.css'],
 })
-export class AddNewProductComponent {
+export class AddNewProductComponent implements OnInit {
   product: Product = new Product();
+  saveButtonStr: string = 'Add Product';
 
   constructor(
     private productService: ProductService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private activatedRoute: ActivatedRoute
   ) {}
 
+  ngOnInit(): void {
+    this.product = this.activatedRoute.snapshot.data['product'];
+    this.saveButtonStr =
+      this.product && this.product.productId ? 'Update Product' : 'Add Product';
+  }
+
   addProduct(productForm: NgForm) {
+    console.log(this.product);
     this.productService
       .addProduct(this.prepareFormData(this.product))
       .subscribe(
