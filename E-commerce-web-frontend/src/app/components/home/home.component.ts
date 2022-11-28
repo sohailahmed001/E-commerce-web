@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { Product } from 'src/app/model/product.model';
 import { ImageProcessingService } from 'src/app/services/image-processing.service';
@@ -14,7 +15,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private imageProcessingService: ImageProcessingService
+    private imageProcessingService: ImageProcessingService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -40,5 +42,9 @@ export class HomeComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  onViewProductClick(productId: number) {
+    this.router.navigate(['/product-view-details', { productId: productId }]);
   }
 }
