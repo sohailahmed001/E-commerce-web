@@ -34,4 +34,13 @@ export class ProductService {
       `${environment.baseUrl}/getProductById/${productId}`
     );
   }
+
+  getProductDetails(
+    isSingleProductCheckout: boolean,
+    productId: number
+  ): Observable<any> {
+    return this.httpClient.get<Product[]>(
+      `${environment.baseUrl}/getProductDetails/${isSingleProductCheckout}/${productId}`
+    );
+  }
 }

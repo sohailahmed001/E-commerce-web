@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { AddNewProductComponent } from './components/add-new-product/add-new-product.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { BuyProductComponent } from './components/buy-product/buy-product.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProductViewDetailsComponent } from './components/product-view-details/product-view-details.component';
 import { ShowProductDetailsComponent } from './components/show-product-details/show-product-details.component';
 import { UserComponent } from './components/user/user.component';
+import { BuyProductResolveService } from './services/buy-product-resolve.service';
 import { ProductResolveService } from './services/product-resolve.service';
 
 const routes: Routes = [
@@ -50,6 +52,15 @@ const routes: Routes = [
     component: ProductViewDetailsComponent,
     resolve: {
       product: ProductResolveService,
+    },
+  },
+  {
+    path: 'buy-product',
+    component: BuyProductComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['User'] },
+    resolve: {
+      productDetails: BuyProductResolveService,
     },
   },
 ];
