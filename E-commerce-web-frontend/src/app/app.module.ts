@@ -28,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ShowProductImagesDialogComponent } from './components/show-product-images-dialog/show-product-images-dialog.component';
 import { ProductViewDetailsComponent } from './components/product-view-details/product-view-details.component';
 import { BuyProductComponent } from './components/buy-product/buy-product.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { BuyProductComponent } from './components/buy-product/buy-product.compon
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    CommonModule,
     HttpClientModule,
     RouterModule,
     BrowserAnimationsModule,

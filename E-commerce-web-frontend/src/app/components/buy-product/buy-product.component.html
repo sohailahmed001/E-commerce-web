@@ -52,12 +52,53 @@
         </form>
       </div>
       <div class="col-6">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere,
-        inventore, autem voluptate nemo facilis, illo unde doloremque ullam ipsa
-        vero nesciunt quo quam commodi rerum iusto tempore. Perferendis
-        reiciendis quod, obcaecati, ea asperiores exercitationem, quidem
-        voluptates voluptatibus dicta rerum id impedit corrupti tempora debitis
-        quas veritatis molestiae sapiente labore esse?
+        <table class="table">
+          <thead class="thead">
+            <tr>
+              <th>Name</th>
+              <th>Amount</th>
+              <th>Quantity</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody class="tbody">
+            <tr *ngFor="let product of productDetails">
+              <td>{{ product.productName }}</td>
+              <td>{{ product.productDiscountedPrice | currency: "Rs. " }}</td>
+              <td>
+                <select
+                  #quantitySelect
+                  class="form-select"
+                  [ngModel]="getQtyForProduct(product.productId)"
+                  (change)="
+                    onQuantityChange(product.productId, quantitySelect.value)
+                  "
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+              </td>
+              <td>
+                {{
+                  getCalculatedTotal(
+                    product.productId,
+                    product.productDiscountedPrice
+                  ) | currency: "Rs. "
+                }}
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td><b>Grand Total</b></td>
+              <td>
+                <b>{{ getCalculatedGrandTotalCost() | currency: "Rs. " }}</b>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

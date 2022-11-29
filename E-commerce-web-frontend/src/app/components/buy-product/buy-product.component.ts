@@ -25,7 +25,7 @@ export class BuyProductComponent implements OnInit {
     this.productDetails.forEach((product) => {
       const orderQuantity = new OrderQuantity();
       orderQuantity.productId = product.productId;
-      orderQuantity.quantity = 1;
+      orderQuantity.quantity = 3;
 
       this.orderDetails.orderProductQuantityList.push(orderQuantity);
     });
@@ -44,5 +44,41 @@ export class BuyProductComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  getOrderQuantityObject(productId: number): OrderQuantity {
+    return this.orderDetails.orderProductQuantityList.find(
+      (orderQuantity) => orderQuantity.productId === productId
+    );
+  }
+
+  getQtyForProduct(productId: number): number {
+    const orderQuantity = this.getOrderQuantityObject(productId);
+
+    return orderQuantity?.quantity ? orderQuantity.quantity : 1;
+  }
+
+  onQuantityChange(productId: number, quantity: number) {
+    const orderQuantity = this.getOrderQuantityObject(productId);
+
+    orderQuantity.quantity = quantity;
+  }
+
+  getCalculatedTotal(productId: number, price: number): number {
+    const orderQuantity = this.getOrderQuantityObject(productId);
+
+    return orderQuantity.quantity * price;
+  }
+
+  getCalculatedGrandTotalCost(): number {
+    return this.orderDetails.orderProductQuantityList
+      .map((orderQuantity) => {
+        const product = this.productDetails.find(
+          (product) => product.productId === orderQuantity.productId
+        );
+
+        return product.productDiscountedPrice * orderQuantity.quantity;
+      })
+      .reduce((totalCost, price) => (totalCost += price), 0);
   }
 }
