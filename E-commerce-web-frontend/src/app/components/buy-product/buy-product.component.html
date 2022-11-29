@@ -1,1 +1,64 @@
-<p>buy-product works!</p>
+<div class="container mt-5">
+  <div class="card p-3">
+    <div class="row">
+      <div class="col-6">
+        <form #orderForm="ngForm" (ngSubmit)="placeOrder(orderForm)">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Full Name</mat-label>
+            <input
+              type="text"
+              matInput
+              [(ngModel)]="orderDetails.fullName"
+              placeholder="Full Name"
+              name="fullName"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Full Address</mat-label>
+            <input
+              type="text"
+              matInput
+              [(ngModel)]="orderDetails.fullAddress"
+              placeholder="Full Address"
+              name="fullAddress"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Contact Number</mat-label>
+            <input
+              type="text"
+              matInput
+              [(ngModel)]="orderDetails.contactNumber"
+              placeholder="Contact Number"
+              name="contactNumber"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Alternate Contact Number</mat-label>
+            <input
+              type="text"
+              matInput
+              [(ngModel)]="orderDetails.altContactNumber"
+              placeholder="Alternate Contact Number"
+              name="altContactNumber"
+            />
+          </mat-form-field>
+
+          <div align="right">
+            <button type="submit" mat-stroked-button color="primary">
+              Place Order
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="col-6">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere,
+        inventore, autem voluptate nemo facilis, illo unde doloremque ullam ipsa
+        vero nesciunt quo quam commodi rerum iusto tempore. Perferendis
+        reiciendis quod, obcaecati, ea asperiores exercitationem, quidem
+        voluptates voluptatibus dicta rerum id impedit corrupti tempora debitis
+        quas veritatis molestiae sapiente labore esse?
+      </div>
+    </div>
+  </div>
+</div>

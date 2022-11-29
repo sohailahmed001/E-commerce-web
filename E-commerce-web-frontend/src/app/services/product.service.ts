@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Product } from '../model/product.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { OrderDetails } from '../model/order-details.model';
 
 @Injectable({
   providedIn: 'root',
@@ -41,6 +42,13 @@ export class ProductService {
   ): Observable<any> {
     return this.httpClient.get<Product[]>(
       `${environment.baseUrl}/getProductDetails/${isSingleProductCheckout}/${productId}`
+    );
+  }
+
+  placeOrder(orderDetails: OrderDetails): Observable<any> {
+    return this.httpClient.post(
+      `${environment.baseUrl}/placeOrder`,
+      orderDetails
     );
   }
 }
