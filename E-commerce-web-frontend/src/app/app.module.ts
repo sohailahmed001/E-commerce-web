@@ -29,6 +29,7 @@ import { ShowProductImagesDialogComponent } from './components/show-product-imag
 import { ProductViewDetailsComponent } from './components/product-view-details/product-view-details.component';
 import { BuyProductComponent } from './components/buy-product/buy-product.component';
 import { CommonModule } from '@angular/common';
+import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { CommonModule } from '@angular/common';
     ShowProductImagesDialogComponent,
     ProductViewDetailsComponent,
     BuyProductComponent,
+    OrderConfirmationComponent,
   ],
   imports: [
     BrowserModule,

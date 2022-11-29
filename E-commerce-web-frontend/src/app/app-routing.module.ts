@@ -7,6 +7,7 @@ import { BuyProductComponent } from './components/buy-product/buy-product.compon
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 import { ProductViewDetailsComponent } from './components/product-view-details/product-view-details.component';
 import { ShowProductDetailsComponent } from './components/show-product-details/show-product-details.component';
 import { UserComponent } from './components/user/user.component';
@@ -62,6 +63,12 @@ const routes: Routes = [
     resolve: {
       productDetails: BuyProductResolveService,
     },
+  },
+  {
+    path: 'order-confirm',
+    component: OrderConfirmationComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['User'] },
   },
 ];
 
